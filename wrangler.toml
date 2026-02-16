@@ -1,0 +1,5 @@
+name = "flash-game"
+compatibility_date = "2026-02-16"
+
+[site]
+bucket = "."
