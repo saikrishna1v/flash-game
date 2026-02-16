@@ -2,96 +2,46 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Flash Game</title>
     <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
-    
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
         html, body {
             width: 100%;
             height: 100%;
             overflow: hidden;
             background: #000;
+            position: fixed;
         }
-        
         #game-container {
             width: 100vw;
             height: 100vh;
             position: fixed;
             top: 0;
             left: 0;
+            right: 0;
+            bottom: 0;
         }
-        
         embed {
             width: 100%;
             height: 100%;
             display: block;
-        }
-        
-        #click-prompt {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 30px 60px;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            font-size: 24px;
-            border: 3px solid white;
-            border-radius: 10px;
-            cursor: pointer;
-            z-index: 9999;
-            text-align: center;
-        }
-        
-        #click-prompt:hover {
-            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            outline: none;
         }
     </style>
 </head>
 <body>
     <div id="game-container">
-        <div id="click-prompt" onclick="startGame()">
-            🎮 Click to Play Fullscreen
-        </div>
-        <embed src="game.swf" 
-               type="application/x-shockwave-flash"
-               allowscriptaccess="always"
-               style="display:none;">
+        <embed src="game.swf" type="application/x-shockwave-flash" allowscriptaccess="always">
     </div>
-    
-    <script>
-        function startGame() {
-            const container = document.getElementById('game-container');
-            const prompt = document.getElementById('click-prompt');
-            const game = document.querySelector('embed');
-            
-            // Show game
-            game.style.display = 'block';
-            prompt.style.display = 'none';
-            
-            // Enter fullscreen
-            if (container.requestFullscreen) {
-                container.requestFullscreen();
-            } else if (container.webkitRequestFullscreen) {
-                container.webkitRequestFullscreen();
-            } else if (container.msRequestFullscreen) {
-                container.msRequestFullscreen();
-            }
-        }
-        
-        // Exit fullscreen when user presses ESC
-        document.addEventListener('fullscreenchange', function() {
-            if (!document.fullscreenElement) {
-                // User exited fullscreen, optionally redirect or show message
-            }
-        });
-    </script>
 </body>
 </html>
